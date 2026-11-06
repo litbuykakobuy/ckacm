@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#191c1b">
+  <title>Kakobuy Spreadsheet | Fashion Categories &amp; Buying Guides</title>
+  <meta name="description" content="Browse 10 Kakobuy spreadsheet fashion categories and read 20 practical guides on sizing, materials, listing photos, shipping, and tracking your finds.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kakobuy Spreadsheet | Fashion Categories &amp; Buying Guides">
+  <meta property="og:description" content="Explore 10 fashion categories and 20 guides for comparing and organizing Kakobuy spreadsheet finds.">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #191c1b;
+      --muted: #505950;
+      --paper: #faf9f3;
+      --white: #fff;
+      --line: #dce0d5;
+      --acid: #d5fc51;
+      --lavender: #eee7ff;
+      --radius: 1.15rem;
+      --width: 71rem;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-padding-top: 5.5rem; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    h1, h2, h3, p { margin: 0; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button, summary { cursor: pointer; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 3px solid #7651df; outline-offset: 4px; }
+    .top :focus-visible, .dock :focus-visible { outline-color: var(--acid); }
+    .wrap { width: min(calc(100% - 2rem), var(--width)); margin-inline: auto; }
+    .skip {
+      position: fixed;
+      top: .5rem;
+      left: .5rem;
+      z-index: 10;
+      padding: .6rem .9rem;
+      transform: translateY(-150%);
+      background: var(--white);
+      color: var(--ink);
+    }
+    .skip:focus { transform: none; }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-bottom: 1px solid #ffffff24;
+      background: rgba(24, 27, 26, .94);
+      color: #fff;
+      -webkit-backdrop-filter: blur(18px) saturate(145%);
+      backdrop-filter: blur(18px) saturate(145%);
+    }
+    .bar {
+      display: flex;
+      min-height: 4rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: -.035em;
+    }
+    .mark {
+      display: inline-grid;
+      width: 2rem;
+      height: 2rem;
+      flex: 0 0 2rem;
+      place-items: center;
+      border-radius: .55rem;
+      background: var(--acid);
+      color: var(--ink);
+      font-weight: 900;
+    }
+    .desktop-nav { display: flex; align-items: center; gap: .95rem; font-size: .875rem; }
+    .desktop-nav > a { font-weight: 750; text-decoration: none; }
+    .desktop-nav > a:hover { color: var(--acid); }
+    .dropdown { position: relative; }
+    .dropdown summary {
+      display: flex;
+      min-height: 2.6rem;
+      align-items: center;
+      gap: .45rem;
+      padding: .35rem .65rem;
+      border: 1px solid #ffffff44;
+      border-radius: .6rem;
+      list-style: none;
+      font-weight: 750;
+    }
+    .dropdown summary::-webkit-details-marker { display: none; }
+    .dropdown summary::after {
+      width: .42rem;
+      height: .42rem;
+      margin-top: -.2rem;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      content: "";
+      transform: rotate(45deg);
+    }
+    .dropdown[open] summary { color: var(--acid); }
+    .menu {
+      display: grid;
+      margin: 0;
+      padding: .45rem;
+      list-style: none;
+    }
+    .dropdown .menu {
+      position: absolute;
+      inset: calc(100% + .5rem) 0 auto auto;
+      width: min(16rem, calc(100vw - 2rem));
+      max-height: min(70vh, 30rem);
+      overflow: auto;
+      border: 1px solid #ffffff2c;
+      border-radius: .85rem;
+      background: #242826;
+      box-shadow: 0 14px 34px #0004;
+    }
+    .menu a {
+      display: flex;
+      min-height: 2.45rem;
+      align-items: center;
+      padding: .35rem .65rem;
+      border-radius: .45rem;
+      text-decoration: none;
+      font-weight: 650;
+      overflow-wrap: anywhere;
+    }
+    .menu a:hover { background: var(--acid); color: var(--ink); }
+    .dock { display: none; }
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 19.5rem;
+      align-items: center;
+      isolation: isolate;
+      overflow: hidden;
+      margin-top: 1rem;
+      padding: clamp(1.25rem, 4.4vw, 3.2rem);
+      border: 1px solid #b8d94e;
+      border-radius: calc(var(--radius) + .3rem);
+      background: var(--acid);
+    }
+    .hero-art { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+    .hero::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(90deg, #d5fc51 12%, #d5fc51 34%, #d5fc51e0 48%, #d5fc5100 72%);
+      content: "";
+    }
+    .hero-copy { max-width: 38rem; }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .74rem;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: .55rem;
+      height: .55rem;
+      flex: 0 0 .55rem;
+      border-radius: 50%;
+      background: currentColor;
+      content: "";
+    }
+    h1 {
+      margin-top: .45rem;
+      font-size: clamp(2.6rem, 7vw, 5.45rem);
+      font-weight: 900;
+      line-height: .92;
+      letter-spacing: -.08em;
+      overflow-wrap: anywhere;
+    }
+    .hero h1 span { display: block; }
+    .intro { max-width: 34rem; margin-top: .9rem; }
+    .hero .intro { max-width: 31rem; font-weight: 600; }
+    .actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.15rem; }
+    .btn {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      padding: .55rem .9rem;
+      border: 1px solid var(--ink);
+      border-radius: .65rem;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .btn:hover { background: #333a36; }
+    .btn.alt { background: #fff; color: var(--ink); }
+    .btn.alt:hover { background: var(--lavender); }
+
+    .section { margin-top: clamp(1.55rem, 4vw, 2.65rem); }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .35rem 1rem;
+      margin-bottom: .75rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.45rem);
+      line-height: 1.1;
+      letter-spacing: -.055em;
+    }
+    .muted { color: var(--muted); }
+    .category-grid, .guide-grid {
+      display: grid;
+      gap: .55rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .category-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .category-grid a, .guide-grid a {
+      display: flex;
+      height: 100%;
+      min-height: 3.4rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: .45rem;
+      padding: .65rem .75rem;
+      border: 1px solid var(--line);
+      border-radius: .7rem;
+      background: var(--white);
+      font-weight: 750;
+      line-height: 1.25;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+    .category-grid a:hover { border-color: var(--ink); background: var(--acid); }
+    .category-grid a span:last-child, .guide-grid a span:last-child { flex: 0 0 auto; }
+    .guide-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .guide-grid a { min-height: 3.75rem; background: #ffffffa8; }
+    .guide-grid a:hover { border-color: #aa91e8; background: var(--lavender); }
+
+    .article { max-width: 52rem; margin: 1rem auto 0; }
+    .article-head {
+      padding: clamp(1.25rem, 5vw, 2.8rem);
+      border: 1px solid #d9c8ff;
+      border-radius: var(--radius);
+      background: var(--lavender);
+    }
+    .article h1 {
+      font-size: clamp(2.15rem, 6.5vw, 4.15rem);
+      line-height: .98;
+      letter-spacing: -.07em;
+    }
+    .article .intro { color: #393345; }
+    .article-body {
+      display: grid;
+      gap: .7rem;
+      max-width: 70ch;
+      margin: 1.25rem auto;
+      padding-inline: clamp(.15rem, 3vw, 1.1rem);
+    }
+    .article-body h2 { margin-top: .65rem; font-size: clamp(1.3rem, 3vw, 1.65rem); }
+    .article-body ol, .article-body ul { margin: 0; padding-left: 1.4rem; }
+    .article-body li + li { margin-top: .35rem; }
+    .article-body a { text-underline-offset: .2em; }
+    .related .guide-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    footer {
+      margin-top: 2.4rem;
+      padding: 1.15rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .sheet {
+      position: fixed;
+      inset: auto 0 0;
+      width: min(100%, 34rem);
+      max-width: 100%;
+      max-height: min(86dvh, 40rem);
+      overflow: auto;
+      margin: auto auto 0;
+      padding: .65rem 1rem calc(1rem + var(--safe-bottom));
+      border: 1px solid var(--line);
+      border-radius: 1.35rem 1.35rem 0 0;
+      background: var(--white);
+      color: var(--ink);
+      box-shadow: 0 -18px 48px #14181a35;
+    }
+    .sheet::backdrop { background: #12161595; }
+    .sheet[open] { animation: sheet-in .2s ease-out; }
+    @keyframes sheet-in { from { transform: translateY(1.5rem); opacity: 0; } }
+    body:has(.sheet[open]) { overflow: hidden; }
+    .sheet-grip { width: 2.3rem; height: .27rem; margin: .1rem auto .55rem; border-radius: 1rem; background: #b5b9af; }
+    .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+    .sheet-head button {
+      display: grid;
+      width: 2.75rem;
+      height: 2.75rem;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: var(--lavender);
+      color: var(--ink);
+      font-size: 1.5rem;
+    }
+    .sheet .menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem; padding: .65rem 0 0; }
+    .sheet .menu a { min-height: 2.9rem; border: 1px solid var(--line); }
+
+    .build-panel { margin: 1rem auto 0; padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+    .build-panel p, .build-panel form { margin-top: .6rem; }
+    .build-panel label { display: block; font-weight: 700; }
+    .build-panel input { width: min(100%, 28rem); margin: .35rem .45rem .45rem 0; padding: .55rem; border: 1px solid var(--muted); border-radius: .5rem; }
+
+    @media (max-width: 60rem) {
+      .category-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .guide-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 44rem) {
+      .wrap { width: min(calc(100% - 1.25rem), var(--width)); }
+      .bar { min-height: 3.5rem; }
+      .has-sheet .desktop-nav { display: none; }
+      .has-sheet body { padding-bottom: calc(5.35rem + var(--safe-bottom)); }
+      .has-sheet .dock {
+        position: fixed;
+        z-index: 6;
+        inset: auto .65rem calc(.55rem + var(--safe-bottom));
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .25rem;
+        max-width: 30rem;
+        margin-inline: auto;
+        padding: .28rem;
+        border: 1px solid #ffffff2b;
+        border-radius: 1.05rem;
+        background: #191c1bf0;
+        color: #fff;
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 10px 30px #14181a38;
+      }
+      .dock a, .dock button {
+        display: grid;
+        min-height: 3rem;
+        place-content: center;
+        gap: .06rem;
+        border: 0;
+        border-radius: .75rem;
+        background: transparent;
+        color: inherit;
+        text-align: center;
+        text-decoration: none;
+        font-size: .73rem;
+        font-weight: 800;
+      }
+      .dock [aria-hidden] { font-size: 1rem; line-height: 1; }
+      .dock button { background: var(--acid); color: var(--ink); }
+      .dock a:hover { background: #ffffff23; }
+      .hero {
+        min-height: 19rem;
+        align-items: start;
+        margin-top: .65rem;
+        padding: 1.2rem 1rem 4.3rem;
+      }
+      .hero::before { background: linear-gradient(180deg, #d5fc51 6%, #d5fc51f5 46%, #d5fc5180 78%, #d5fc5100); }
+      .category-grid, .guide-grid, .related .guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-head { align-items: start; }
+    }
+    @media (max-width: 23rem) {
+      .desktop-nav { gap: .4rem; }
+      .desktop-nav > a { display: none; }
+      .category-grid a, .guide-grid a { padding-inline: .55rem; font-size: .875rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; }
+    }
+  </style>
+<link rel="canonical" href="https://litbuykakobuy.github.io/ckacm/">
+</head>
+<body>
+  <!--
+    文件名 index.html。当前文件包含首页、20 篇文章和静态导出程序。
+    保存后用浏览器打开 index.html?build=1，点击 Download static site。
+    解压 ZIP，将其中 21 个 HTML 文件放在服务器的同一目录。
+    每篇文章使用自己的 .html 文件和普通链接，无需路由重写。
+    导出时可填写部署后的完整首页 URL（例如 https://example.com/）。
+    填写后会加入每页 canonical、og:url 和 sitemap.xml。
+  -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <div class="wrap bar">
+      <a class="brand" href="./index.html"><span class="mark" aria-hidden="true">K</span> Kakobuy Spreadsheet</a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="./index.html">Home</a>
+        <details class="dropdown">
+          <summary>Categories</summary>
+          <ul class="menu" id="category-links">
+            <li><a href="https://findsspreadsheet.net/category-911-Shoes.html" target="_blank" rel="noopener nofollow">Shoes</a></li>
+            <li><a href="https://findsspreadsheet.net/search-912/name/Shoes.html" target="_blank" rel="noopener nofollow">Hoodies/Sweaters</a></li>
+            <li><a href="https://findsspreadsheet.net/search-913/name/Shoes.html" target="_blank" rel="noopener nofollow">T-Shirts</a></li>
+            <li><a href="https://findsspreadsheet.net/search-914/name/Shoes.html" target="_blank" rel="noopener nofollow">Jackets</a></li>
+            <li><a href="https://findsspreadsheet.net/search-915/name/Shoes.html" target="_blank" rel="noopener nofollow">Pants/Shorts</a></li>
+            <li><a href="https://findsspreadsheet.net/search-916/name/Shoes.html" target="_blank" rel="noopener nofollow">Headwear</a></li>
+            <li><a href="https://findsspreadsheet.net/search-917/name/Shoes.html" target="_blank" rel="noopener nofollow">Sets</a></li>
+            <li><a href="https://findsspreadsheet.net/search-918/name/Shoes.html" target="_blank" rel="noopener nofollow">underwear/underpants</a></li>
+            <li><a href="https://findsspreadsheet.net/search-919/name/Shoes.html" target="_blank" rel="noopener nofollow">Jersey</a></li>
+            <li><a href="https://findsspreadsheet.net/search-920/name/Shoes.html" target="_blank" rel="noopener nofollow">Accessories</a></li>
+          </ul>
+        </details>
+        <a href="./index.html#guides">Guides</a>
+      </nav>
+    </div>
+  </header>
+
+  <aside class="wrap build-panel" id="build-panel" hidden aria-labelledby="build-heading">
+    <h2 id="build-heading">Export static website</h2>
+    <p class="muted">The ZIP includes the homepage and all 20 article pages as individual HTML files.</p>
+    <form id="build-form">
+      <label for="public-url">Public homepage URL (optional)</label>
+      <input id="public-url" type="url" placeholder="https://example.com/" autocomplete="off">
+      <button class="btn" type="submit">Download static site</button>
+    </form>
+    <p id="build-status" role="status"></p>
+  </aside>
+
+  <main class="wrap" id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <svg class="hero-art" viewBox="0 0 1200 370" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="hero-grid" width="34" height="34" patternUnits="userSpaceOnUse">
+            <path d="M34 0H0V34" fill="none" stroke="#344112" stroke-opacity=".22"/>
+          </pattern>
+          <linearGradient id="hero-glow" x2="1" y2="1">
+            <stop stop-color="#f6ffab"/><stop offset="1" stop-color="#a8df39"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#hero-glow)" d="M0 0h1200v370H0z"/>
+        <path fill="url(#hero-grid)" d="M0 0h1200v370H0z"/>
+        <circle cx="945" cy="185" r="151" fill="#cdb9ff"/>
+        <circle cx="945" cy="185" r="128" fill="none" stroke="#24252a" stroke-opacity=".45" stroke-dasharray="4 8"/>
+        <path d="M679 181h492m-226-175v356" fill="none" stroke="#24252a" stroke-opacity=".26"/>
+        <g transform="translate(755 78) rotate(-15 192 110)" stroke="#191c1b" stroke-width="4" stroke-linejoin="round">
+          <ellipse cx="198" cy="182" rx="170" ry="20" fill="#191c1b" opacity=".16" stroke="none"/>
+          <path d="M27 127c19-6 51-6 77-13 34-10 60-31 79-62 10-16 22-16 34-5l37 33c14 12 30 11 49 5l24-8c11-4 19 1 24 11l16 37 4 31H23c-9 0-13-8-12-15 1-6 7-11 16-14Z" fill="#fffdf0"/>
+          <path d="M181 55l62 52 43 10-26 39H132l-16-45c27-11 49-30 65-56Z" fill="#d5fc51"/>
+          <path d="M302 87l25-10c11-4 19 1 24 11l16 37 4 31h-96l11-39Z" fill="#eee7ff"/>
+          <path d="M17 145c69 12 115 9 168 3 54-7 124 4 184-13l3 22c1 9-6 15-16 17-83 10-169 10-253 8l-74-2c-11-1-19-8-19-16v-12Z" fill="#fff"/>
+          <path d="M150 94l32 18m-16-34 35 19m-22-35 36 20M35 135c18 2 36 3 56-1m223-24 25-8M45 168l36 2m222-7 38-4" fill="none" stroke-linecap="round"/>
+          <path d="m116 128 42 5 52-18-35 24-60 5Z" fill="#191c1b" stroke="none"/>
+        </g>
+        <g fill="#191c1b">
+          <path d="M1109 36l5 16 16 5-16 5-5 16-5-16-16-5 16-5Z"/>
+          <path d="M750 262l4 13 13 4-13 4-4 13-4-13-13-4 13-4Z"/>
+          <circle cx="1124" cy="287" r="6"/>
+        </g>
+      </svg>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Fashion finds directory</p>
+        <h1 id="hero-title">Kakobuy <span>Spreadsheet</span></h1>
+        <p class="intro">Jump to the category you want, then use the buying guides to compare listings, check measurements, and organize your shortlist.</p>
+        <div class="actions">
+          <a class="btn" href="https://findsspreadsheet.net/" target="_blank" rel="noopener nofollow">kakobuy spreadsheet <span aria-hidden="true">↗</span></a>
+          <a class="btn alt" href="https://findsspreadsheet.net/" target="_blank" rel="noopener nofollow">buy it now <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories" aria-labelledby="category-heading">
+      <div class="section-head">
+        <h2 id="category-heading">Shop by category</h2>
+        <p class="muted">10 direct links to the main site</p>
+      </div>
+      <ul class="category-grid">
+        <li><a href="https://findsspreadsheet.net/category-911-Shoes.html" target="_blank" rel="noopener nofollow"><span>Shoes</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-912/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>Hoodies/Sweaters</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-913/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>T-Shirts</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-914/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>Jackets</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-915/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>Pants/Shorts</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-916/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>Headwear</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-917/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>Sets</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-918/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>underwear/underpants</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-919/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>Jersey</span><span aria-hidden="true">↗</span></a></li>
+        <li><a href="https://findsspreadsheet.net/search-920/name/Shoes.html" target="_blank" rel="noopener nofollow"><span>Accessories</span><span aria-hidden="true">↗</span></a></li>
+      </ul>
+    </section>
+
+    <section class="section" id="guides" aria-labelledby="guide-heading">
+      <div class="section-head">
+        <h2 id="guide-heading">Kakobuy Spreadsheet guides</h2>
+        <p class="muted">20 articles for comparing and tracking finds</p>
+      </div>
+      <ul class="guide-grid">
+        <li><a href="./kakobuy-spreadsheet-beginner-guide.html"><span>Beginner’s guide</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-shoe-sizing.html"><span>Shoe sizing</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-hoodie-fit.html"><span>Hoodie and sweater fit</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-t-shirt-fabric.html"><span>T-shirt fabric and fit</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-jacket-layering.html"><span>Jacket layering</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-pants-shorts-sizing.html"><span>Pants and shorts sizing</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-headwear-fit.html"><span>Headwear fit</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-matching-sets.html"><span>Matching sets</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-underwear-fit.html"><span>Underwear sizing</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-jersey-guide.html"><span>Jersey fit and details</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-accessory-guide.html"><span>Accessory dimensions</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-size-chart-guide.html"><span>Reading size charts</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-photo-checklist.html"><span>Listing photo checklist</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-listing-comparison.html"><span>Comparing listings</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-budget-planner.html"><span>Purchase budget</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-shipping-planner.html"><span>Shipping planner</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-wishlist-tracker.html"><span>Wishlist tracker</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-link-audit.html"><span>Checking saved links</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-seasonal-wardrobe.html"><span>Seasonal wardrobe</span><span aria-hidden="true">→</span></a></li>
+        <li><a href="./kakobuy-spreadsheet-order-checklist.html"><span>Pre-order checklist</span><span aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Kakobuy Spreadsheet · Category directory and buying guides</div>
+  </footer>
+
+  <nav class="dock" aria-label="Mobile navigation">
+    <a href="./index.html"><span aria-hidden="true">⌂</span>Home</a>
+    <button id="open-sheet" type="button" aria-haspopup="dialog" aria-controls="category-sheet"><span aria-hidden="true">▦</span>Categories</button>
+    <a href="./index.html#guides"><span aria-hidden="true">≡</span>Guides</a>
+  </nav>
+
+  <dialog class="sheet" id="category-sheet" aria-labelledby="sheet-title">
+    <div class="sheet-grip" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="sheet-title">Categories</h2>
+      <form method="dialog">
+        <button type="submit" aria-label="Close categories" autofocus>×</button>
+      </form>
+    </div>
+  </dialog>
+
+  <template id="article-source">
+    <article id="beginner-guide" data-related="wishlist-tracker,listing-comparison,order-checklist">
+      <h1>How to Use a Kakobuy Spreadsheet</h1>
+      <p class="intro">Build a first shortlist by category, record the exact variants you like, and compare the details that affect fit and cost.</p>
+      <h2>Start with one item</h2>
+      <p>Choose a category and write down what the item needs to do. If you want an everyday hoodie, for example, note the chest width and length of one you already wear, the colors you would buy, and your spending limit. That gives you a consistent way to compare finds across listings.</p>
+      <h2>Save enough information to find it again</h2>
+      <p>For each candidate, record its URL, selected color and size, listed price, and the date you checked it. Add one open question, such as whether the size chart shows body or garment measurements. Before ordering, reopen the link and confirm the option shown in your notes is still available.</p>
+    </article>
+
+    <article id="shoe-sizing" data-related="size-chart-guide,photo-checklist,order-checklist">
+      <h1>Kakobuy Spreadsheet Shoe Sizing Guide</h1>
+      <p class="intro">Compare foot length, toe shape, and shoe measurements before choosing a size from a spreadsheet listing.</p>
+      <h2>Start with your longer foot</h2>
+      <p>Stand on paper in the socks you plan to wear, mark your heel and longest toe, and measure both feet in millimeters. Record the larger length and note whether you usually need a wide fit. If you have a similar pair that fits, save its model and labeled size for reference.</p>
+      <h2>Check what the chart measures</h2>
+      <p>Some charts give recommended foot length, while others report the length of the removable insole. Keep those measurements in separate columns. Compare removable insoles measured heel to toe only when you can measure a pair you own the same way. If a shoe has a narrow toe shape, length alone may give an incomplete picture of fit.</p>
+    </article>
+
+    <article id="hoodie-fit" data-related="jacket-layering,size-chart-guide,t-shirt-fabric">
+      <h1>Kakobuy Spreadsheet Hoodie and Sweater Fit</h1>
+      <p class="intro">Use a hoodie or sweater you already own to compare garment width, sleeve shape, and length.</p>
+      <h2>Measure your reference garment flat</h2>
+      <p>Record the width from armpit to armpit and the length from the highest shoulder point to the hem. For a dropped-shoulder hoodie, also measure from the center back of the neck to the cuff. That measurement can be easier to compare across shoulder designs than sleeve length on its own.</p>
+      <h2>Account for fabric and the hem</h2>
+      <p>A ribbed waistband can pull the hem inward, and thick fleece can make a familiar chest width feel snugger over a T-shirt. If the listing includes fabric composition and close-up photos, use them to check the intended weight and texture. Save the measurements for your exact size so you can compare them later.</p>
+    </article>
+
+    <article id="t-shirt-fabric" data-related="size-chart-guide,hoodie-fit,photo-checklist">
+      <h1>Kakobuy Spreadsheet T-Shirt Fabric and Fit</h1>
+      <p class="intro">Compare the measurements and fabric details that determine how a T-shirt hangs and feels.</p>
+      <h2>Check fabric weight and composition</h2>
+      <p>When listed, grams per square meter describe the weight of the fabric. Use that number alongside the fiber content and knit. A heavier fabric may hold its shape differently from a lighter one, and a product photo rarely tells you how much stretch the material has.</p>
+      <h2>Compare width and length together</h2>
+      <p>Measure a T-shirt you like from armpit to armpit and from the highest shoulder point to the hem. If two listings have the same chest width, compare body length and sleeve opening to see which has the cut you want. For printed tees, check a close-up of the print and ask how it should be washed if care details are missing.</p>
+    </article>
+
+    <article id="jacket-layering" data-related="hoodie-fit,size-chart-guide,seasonal-wardrobe">
+      <h1>Kakobuy Spreadsheet Jacket Layering Guide</h1>
+      <p class="intro">Find a jacket that fits over the clothes you plan to wear underneath it.</p>
+      <h2>Measure for your thickest regular layer</h2>
+      <p>Zip up a jacket that fits over your usual hoodie or sweater and lay it flat. Record the chest, hem width, back length, and sleeve length. Compare these with the listing’s garment measurements. For a padded jacket, check the sleeve and armhole shape, since insulation can take up space inside the garment.</p>
+      <h2>Look at closures and coverage</h2>
+      <p>For cycling or frequent reaching, check sleeve coverage and how the hem sits when you move. If you want a jacket for wet weather, look for specific details about the fabric, seam construction, and hood adjustment. Record the listed features and any unanswered questions alongside your size choice.</p>
+    </article>
+
+    <article id="pants-shorts-sizing" data-related="size-chart-guide,matching-sets,order-checklist">
+      <h1>Kakobuy Spreadsheet Pants and Shorts Sizing</h1>
+      <p class="intro">Compare waist, rise, thigh, and inseam measurements against a pair you already wear.</p>
+      <h2>Measure a pair with a similar cut</h2>
+      <p>Lay the waistband flat and record its width. Measure the front rise from the crotch seam to the top of the waistband and the inseam from the crotch seam to the hem. For a tapered fit, measure the leg opening as well. Use a similar reference garment for fabric with substantial stretch.</p>
+      <h2>Check how the listing reports waist size</h2>
+      <p>A 40 cm flat waistband corresponds to about 80 cm around when measured flat, but that describes the garment. For elastic styles, look for both relaxed and stretched measurements. If you often need more room through the thigh, compare the listed thigh measurement and where it was taken before choosing a waist size.</p>
+    </article>
+
+    <article id="headwear-fit" data-related="accessory-guide,photo-checklist,size-chart-guide">
+      <h1>Kakobuy Spreadsheet Headwear Fit Guide</h1>
+      <p class="intro">Measure your head and compare cap depth, adjustment range, and beanie construction.</p>
+      <h2>Measure where the band will sit</h2>
+      <p>Wrap a soft tape around your head just above your ears and across your forehead where the cap will rest. Keep the tape snug and level. Record the measurement in centimeters, then compare it with the listing’s stated circumference or adjustment range.</p>
+      <h2>Compare crown depth and closures</h2>
+      <p>A shallow cap can sit higher than a deep cap with the same circumference. Check side photos, brim curvature, and the back closure. If you like wearing a cap near the middle of its adjustment range, compare your measurement with both ends of the listed range. For beanies, check whether the stated height includes the cuff unfolded.</p>
+    </article>
+
+    <article id="matching-sets" data-related="pants-shorts-sizing,hoodie-fit,listing-comparison">
+      <h1>Kakobuy Spreadsheet Matching Sets Guide</h1>
+      <p class="intro">Compare the top and bottom separately before choosing a size for a tracksuit or coordinated set.</p>
+      <h2>Make a fit note for each piece</h2>
+      <p>For the top, record chest width, body length, and sleeve length. For the bottom, record waist range, rise, and inseam. Compare each piece against a garment you own. If the listing offers a single size for both, check whether both pieces meet your measurements or look for a listing that lets you select them separately.</p>
+      <h2>Confirm the package and the color</h2>
+      <p>Read the selected option carefully. A listing with a photo of a full outfit may offer the pieces individually. Check whether the chosen price covers both pieces and whether both are listed under the same color name. If you plan to wear them together, compare the fabric finish in photos taken under similar lighting.</p>
+    </article>
+
+    <article id="underwear-fit" data-related="pants-shorts-sizing,size-chart-guide,order-checklist">
+      <h1>Kakobuy Spreadsheet Underwear Sizing Guide</h1>
+      <p class="intro">Compare waistband stretch, rise, fabric composition, and pack size before selecting underwear.</p>
+      <h2>Check the waistband and rise</h2>
+      <p>Measure a comfortable pair flat and record the relaxed waistband width. Compare it against the same type of measurement on the listing. Also note the rise and leg opening, especially if the garment will sit under slim pants or shorts. If the seller provides body measurements instead, use your own waist or hip measurement as the chart directs.</p>
+      <h2>Verify the pack and material</h2>
+      <p>Check the quantity and colors included in the exact option you select. Read the fabric details for the body and waistband separately when both are provided. Review the seller’s return terms for opened or tried-on items before buying, particularly if you are comparing an unfamiliar cut.</p>
+    </article>
+
+    <article id="jersey-guide" data-related="t-shirt-fabric,photo-checklist,size-chart-guide">
+      <h1>Kakobuy Spreadsheet Jersey Fit and Details</h1>
+      <p class="intro">Compare jersey cuts, badge construction, and customization options using the exact variant you want.</p>
+      <h2>Compare cut with your intended use</h2>
+      <p>Decide whether you want a jersey for playing, casual wear, or layering over a shirt. Check chest width, shoulder shape, and hem length against a reference garment. When a listing offers several cuts, open the size chart for the option you selected and record whether its measurements describe the garment or the wearer.</p>
+      <h2>Read the customization details</h2>
+      <p>Check if badges, name, and number are included or selected separately. Compare close-up photos for printed, stitched, or heat-applied details when the listing identifies them. Before submitting a personalized order, check the exact spelling, number, and placement and review the seller’s terms for that option.</p>
+    </article>
+
+    <article id="accessory-guide" data-related="headwear-fit,photo-checklist,listing-comparison">
+      <h1>Kakobuy Spreadsheet Accessory Dimensions</h1>
+      <p class="intro">Check accessory dimensions against what you carry, wear, or attach them to.</p>
+      <h2>Measure for the intended use</h2>
+      <p>For a bag, measure your largest everyday item and compare its dimensions with the compartment and the opening. For a belt, measure from the buckle reference point to the hole you usually wear, then check how the listing defines length. For straps, record the usable adjustment range and the width at the attachment.</p>
+      <h2>Check the hardware and options</h2>
+      <p>Look for close-up photos of zippers, clasps, buckles, and attachment points. Confirm which strap, pouch, or other part is included in the selected variant. If fit depends on a specific opening or attachment size, save the required measurement in your spreadsheet so you can check alternatives consistently.</p>
+    </article>
+
+    <article id="size-chart-guide" data-related="shoe-sizing,pants-shorts-sizing,hoodie-fit">
+      <h1>How to Read Kakobuy Spreadsheet Size Charts</h1>
+      <p class="intro">Separate body and garment measurements, normalize units, and save the chart for your chosen variant.</p>
+      <h2>Identify what each column measures</h2>
+      <p>A body chart recommends a size based on the wearer’s measurements. A garment chart describes the finished item. For example, a 53 cm flat chest width corresponds to about 106 cm around the garment. Keep it separate from a recommended 106 cm body chest measurement, which can refer to a garment with different dimensions.</p>
+      <h2>Record your comparison in one unit</h2>
+      <p>Convert inches to centimeters by multiplying by 2.54, and note whether a number is flat width or circumference. When comparing listings, check that they measure from the same points. Save the variant, chart date, and any tolerance stated by the seller so the numbers remain interpretable when you return to the shortlist.</p>
+    </article>
+
+    <article id="photo-checklist" data-related="listing-comparison,jacket-layering,link-audit">
+      <h1>Kakobuy Spreadsheet Listing Photo Checklist</h1>
+      <p class="intro">Review the views and close-ups that help you compare a listing with the item you expect to receive.</p>
+      <h2>Start with front, back, and side views</h2>
+      <p>Check whether the photos correspond to the selected color and version. For apparel, look at the seams, neckline, cuffs, and hem. For shoes, compare the side profile, outsole, heel, and toe shape. A ruler photo can help with scale when its start and end points are both visible.</p>
+      <h2>Turn missing details into questions</h2>
+      <p>When photos show several versions, identify which image represents your selection. Ask for one specific view if a detail matters, such as the back of a jersey with its optional number or the inside label of a jacket. Record which details you observed and which still need confirmation.</p>
+    </article>
+
+    <article id="listing-comparison" data-related="budget-planner,photo-checklist,wishlist-tracker">
+      <h1>How to Compare Kakobuy Spreadsheet Listings</h1>
+      <p class="intro">Compare exact variants side by side using measurements, included items, and estimated delivered cost.</p>
+      <h2>Give each variant its own row</h2>
+      <p>Record color, size, seller, item price, and included pieces. Two listings can use similar photos while offering different materials, construction, or package contents. Keep separate rows whenever a variation changes your decision. Add the last checked date so you can recognize an older price or stock note.</p>
+      <h2>Make the decision easy to revisit</h2>
+      <p>Mark requirements such as a minimum inseam, a specific closure, or a firm budget. Then add a short reason for keeping each candidate. An entry like “fits my inseam, shipping estimate pending” tells you exactly what to check before deciding between it and a second listing.</p>
+    </article>
+
+    <article id="budget-planner" data-related="shipping-planner,listing-comparison,order-checklist">
+      <h1>Kakobuy Spreadsheet Purchase Budget Planner</h1>
+      <p class="intro">Separate item prices from estimated shipping and fees so you can compare the full purchase cost.</p>
+      <h2>Keep quoted and estimated costs separate</h2>
+      <p>Create columns for the item price, shipping, service fees if applicable, and any other costs shown for your order. Put all amounts in one currency for comparison. Save the exchange rate and the date used so you can refresh the estimate if the underlying prices change.</p>
+      <h2>Keep a range when shipping is uncertain</h2>
+      <p>For example, an item priced at 32 with shipping estimated at 12–18 has an estimated subtotal of 44–50 before other applicable charges. Record the range and its assumptions. When you have a checkout quote for the exact variant and destination, update the estimate and compare the total against your budget.</p>
+    </article>
+
+    <article id="shipping-planner" data-related="budget-planner,accessory-guide,order-checklist">
+      <h1>Kakobuy Spreadsheet Shipping Planner</h1>
+      <p class="intro">Record the package details and assumptions behind each shipping quote.</p>
+      <h2>Record packed weight and dimensions</h2>
+      <p>Save actual packed weight and package dimensions when they are available. If a quote mentions volumetric weight, use the calculation specified by that carrier or service. Keep packaging assumptions in your notes, especially for bulky shoes or outerwear. Changes to the box or packing method can change the quote.</p>
+      <h2>Compare quotes on matching terms</h2>
+      <p>Use the same destination and parcel assumptions when comparing options. Write down the service, quoted cost, estimated delivery window, and date. If tracking or handling time affects your choice, add those details to the same row. Refresh estimates after changing quantities or adding an item to the parcel.</p>
+    </article>
+
+    <article id="wishlist-tracker" data-related="beginner-guide,link-audit,seasonal-wardrobe">
+      <h1>Build a Kakobuy Spreadsheet Wishlist Tracker</h1>
+      <p class="intro">Track product links, exact variants, and the next action for each saved find.</p>
+      <h2>Use columns you will actually update</h2>
+      <p>Start with category, item name, URL, variant, price, status, and date checked. Use one row per variant when you are comparing sizes or materials. Add a short note for the detail you still need, such as sleeve length or whether a set includes both pieces.</p>
+      <h2>Give each saved item a clear status</h2>
+      <p>Try “to compare,” “waiting for measurements,” “ready to review,” and “archived.” When you revisit the sheet, filter for rows with unresolved questions first. If a listing changes, record the new price or stock status and update the date. That keeps old notes useful without making them look current.</p>
+    </article>
+
+    <article id="link-audit" data-related="wishlist-tracker,listing-comparison,photo-checklist">
+      <h1>How to Check Saved Kakobuy Spreadsheet Links</h1>
+      <p class="intro">Confirm that your saved URLs still lead to the exact item and variant recorded in your notes.</p>
+      <h2>Check the destination and the option</h2>
+      <p>Open each active link and compare the product name, photos, seller, and variants with your saved row. A page can still load after a size, color, or bundle has disappeared. Record the date checked and label the entry according to what you found, such as “variant unavailable” or “needs review.”</p>
+      <h2>Preserve the record when replacing a link</h2>
+      <p>If you find a comparable listing, save it in a new row with a note linking it back to the original entry. Compare the material, measurements, and included items before carrying over any fit notes. Keep unavailable listings archived if their measurements or photos helped define what you want.</p>
+    </article>
+
+    <article id="seasonal-wardrobe" data-related="jacket-layering,t-shirt-fabric,wishlist-tracker">
+      <h1>Kakobuy Spreadsheet Seasonal Wardrobe Planner</h1>
+      <p class="intro">Plan a short list of finds around local weather, existing clothes, and the outfits you expect to wear.</p>
+      <h2>Start with the outfits you already use</h2>
+      <p>Write down three outfits that work for your usual week. Identify one gap, such as a jacket that fits over a sweater or shorts with a comfortable inseam. Record the colors, fabric, and measurements that would let a new piece work with at least two of those outfits.</p>
+      <h2>Sort by expected wear and timing</h2>
+      <p>Put items you need soon at the top of the shortlist. For each candidate, add a column for compatible outfits and another for the date you expect to need it. Check your shipping estimate against that date and keep seasonal extras separate from your core shortlist so the priorities stay visible.</p>
+    </article>
+
+    <article id="order-checklist" data-related="size-chart-guide,budget-planner,shipping-planner">
+      <h1>Kakobuy Spreadsheet Pre-Order Checklist</h1>
+      <p class="intro">Recheck the item, variant, measurements, and quoted cost before placing an order.</p>
+      <h2>Verify the exact selection</h2>
+      <ol>
+        <li>Open the saved URL and check that the listing still matches your notes.</li>
+        <li>Confirm color, size, quantity, and any included accessories or customization.</li>
+        <li>Check that the measurements belong to the chosen variant and use the same units as your reference.</li>
+      </ol>
+      <h2>Record the checkout details</h2>
+      <p>Compare the quoted total with your budget, including any charges displayed for the order. Review the shipping service and relevant seller terms. Save the date, exact selection, and quote in your tracker so you have a reference if a listing or estimate changes afterward.</p>
+    </article>
+  </template>
+
+  <script>
+    (() => {
+      const sheet = document.getElementById("category-sheet");
+      const trigger = document.getElementById("open-sheet");
+      const dropdown = document.querySelector(".dropdown");
+
+      if (sheet && trigger && typeof sheet.showModal === "function") {
+        const links = document.getElementById("category-links").cloneNode(true);
+        links.removeAttribute("id");
+        sheet.append(links);
+        document.documentElement.classList.add("has-sheet");
+
+        trigger.addEventListener("click", () => sheet.showModal());
+        sheet.addEventListener("click", event => {
+          if (event.target === sheet || event.target.closest("a")) sheet.close();
+        });
+        sheet.addEventListener("close", () => trigger.focus());
+      }
+
+      if (dropdown) {
+        document.addEventListener("click", event => {
+          if (dropdown.open && (!dropdown.contains(event.target) || event.target.closest("a"))) {
+            dropdown.open = false;
+          }
+        });
+        dropdown.addEventListener("keydown", event => {
+          if (event.key === "Escape" && dropdown.open) {
+            dropdown.open = false;
+            dropdown.querySelector("summary").focus();
+          }
+        });
+      }
+    })();
+  </script>
+
+  <script id="static-exporter">
+    (() => {
+      if (new URLSearchParams(window.location.search).get("build") !== "1") return;
+
+      const panel = document.getElementById("build-panel");
+      const form = document.getElementById("build-form");
+      const status = document.getElementById("build-status");
+      const source = document.getElementById("article-source");
+      const prefix = "kakobuy-spreadsheet-";
+      const encoder = new TextEncoder();
+      panel.hidden = false;
+
+      function pageFilename(slug) {
+        return `${prefix}${slug}.html`;
+      }
+
+      function cleanClone() {
+        const root = document.documentElement.cloneNode(true);
+        root.classList.remove("has-sheet");
+        root.querySelector("#build-panel").remove();
+        root.querySelector("#article-source").remove();
+        root.querySelector("#static-exporter").remove();
+        root.querySelector("#category-sheet").removeAttribute("open");
+        root.querySelector("#category-sheet .menu")?.remove();
+        root.querySelector(".dropdown").removeAttribute("open");
+        root.querySelectorAll("style").forEach(style => {
+          style.textContent = style.textContent.replace(/^\s*\.build-panel[^{]*\{[^}]*\}/gm, "");
+        });
+
+        const comments = document.createTreeWalker(root, NodeFilter.SHOW_COMMENT);
+        const authorComments = [];
+        while (comments.nextNode()) authorComments.push(comments.currentNode);
+        authorComments.forEach(comment => comment.remove());
+        return root;
+      }
+
+      function setMeta(root, selector, content) {
+        root.querySelector(selector).setAttribute("content", content);
+      }
+
+      function setCanonical(root, url) {
+        const canonical = document.createElement("link");
+        canonical.rel = "canonical";
+        canonical.href = url.href;
+        const openGraphUrl = document.createElement("meta");
+        openGraphUrl.setAttribute("property", "og:url");
+        openGraphUrl.content = url.href;
+        root.querySelector("head").append(canonical, openGraphUrl);
+      }
+
+      function articlePage(article, articlesById) {
+        const root = cleanClone();
+        const main = root.querySelector("#main");
+        const title = article.querySelector("h1").textContent.trim();
+        const description = article.querySelector(".intro").textContent.trim();
+        root.querySelector("title").textContent = title;
+        setMeta(root, 'meta[name="description"]', description);
+        setMeta(root, 'meta[property="og:type"]', "article");
+        setMeta(root, 'meta[property="og:title"]', title);
+        setMeta(root, 'meta[property="og:description"]', description);
+
+        const content = document.createElement("article");
+        content.className = "article";
+        const heading = document.createElement("header");
+        heading.className = "article-head";
+        const label = document.createElement("p");
+        label.className = "eyebrow";
+        label.textContent = "Kakobuy Spreadsheet guides";
+        heading.append(label, article.querySelector("h1").cloneNode(true), article.querySelector(".intro").cloneNode(true));
+
+        const body = document.createElement("div");
+        body.className = "article-body";
+        for (const element of article.children) {
+          if (!element.matches("h1, .intro")) body.append(element.cloneNode(true));
+        }
+        const back = document.createElement("p");
+        const home = document.createElement("a");
+        home.href = "./index.html";
+        home.textContent = "Back to the Kakobuy Spreadsheet homepage";
+        back.append(home);
+        body.append(back);
+
+        const related = document.createElement("section");
+        related.className = "section related";
+        related.setAttribute("aria-labelledby", "related-heading");
+        const relatedHeading = document.createElement("div");
+        relatedHeading.className = "section-head";
+        const relatedTitle = document.createElement("h2");
+        relatedTitle.id = "related-heading";
+        relatedTitle.textContent = "Related guides";
+        relatedHeading.append(relatedTitle);
+        const relatedList = document.createElement("ul");
+        relatedList.className = "guide-grid";
+
+        for (const slug of article.dataset.related.split(",")) {
+          const item = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = `./${pageFilename(slug)}`;
+          const linkText = document.createElement("span");
+          linkText.textContent = articlesById.get(slug).querySelector("h1").textContent.trim();
+          const arrow = document.createElement("span");
+          arrow.setAttribute("aria-hidden", "true");
+          arrow.textContent = "→";
+          link.append(linkText, arrow);
+          item.append(link);
+          relatedList.append(item);
+        }
+
+        related.append(relatedHeading, relatedList);
+        content.append(heading, body, related);
+        main.replaceChildren(content);
+        return root;
+      }
+
+      function getPublicHome() {
+        const value = document.getElementById("public-url").value.trim();
+        if (!value) return null;
+        const url = new URL(value);
+        if (!["https:", "http:"].includes(url.protocol) || url.username || url.password || url.search || url.hash) {
+          throw new Error("Enter a public HTTP or HTTPS homepage URL without credentials, a query, or a fragment.");
+        }
+        if (!url.pathname.endsWith("/") && !url.pathname.endsWith("/index.html")) {
+          throw new Error("End the homepage URL with / or /index.html.");
+        }
+        return url;
+      }
+
+      function xmlEscape(value) {
+        return value.replace(/[&<>"']/g, character => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;"
+        })[character]);
+      }
+
+      function collectFiles(publicHome) {
+        const articles = Array.from(source.content.querySelectorAll("article"));
+        const articlesById = new Map(articles.map(article => [article.id, article]));
+        const homepage = cleanClone();
+        const listedPages = Array.from(homepage.querySelectorAll("#guides .guide-grid a"), link => link.getAttribute("href"));
+        if (articlesById.size !== 20 || articles.length !== 20 || listedPages.length !== 20 ||
+            !articles.every(article => listedPages.includes(`./${pageFilename(article.id)}`))) {
+          throw new Error("The homepage links and article filenames do not match.");
+        }
+
+        const files = [];
+        const pageUrls = [];
+
+        function addPage(filename, root) {
+          if (publicHome) {
+            const url = filename === "index.html" ? publicHome : new URL(filename, publicHome);
+            setCanonical(root, url);
+            pageUrls.push(url.href);
+          }
+          files.push([filename, `<!DOCTYPE html>\n${root.outerHTML}\n`]);
+        }
+
+        addPage("index.html", homepage);
+        for (const article of articles) {
+          addPage(pageFilename(article.id), articlePage(article, articlesById));
+        }
+
+        if (publicHome) {
+          const entries = pageUrls.map(url => `  <url><loc>${xmlEscape(url)}</loc></url>`).join("\n");
+          const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
+          files.push(["sitemap.xml", sitemap]);
+        }
+        return files;
+      }
+
+      const crcTable = Uint32Array.from({ length: 256 }, (_, index) => {
+        let value = index;
+        for (let bit = 0; bit < 8; bit++) {
+          value = (value >>> 1) ^ ((value & 1) ? 0xedb88320 : 0);
+        }
+        return value >>> 0;
+      });
+
+      function crc32(bytes) {
+        let checksum = 0xffffffff;
+        for (const byte of bytes) {
+          checksum = (checksum >>> 8) ^ crcTable[(checksum ^ byte) & 0xff];
+        }
+        return (checksum ^ 0xffffffff) >>> 0;
+      }
+
+      function zipFiles(files) {
+        const entries = [];
+        const directory = [];
+        const zipDate = 33;
+        const utf8Flag = 0x0800;
+        let offset = 0;
+        let directorySize = 0;
+
+        for (const [filename, contents] of files) {
+          const name = encoder.encode(filename);
+          const data = encoder.encode(contents);
+          const crc = crc32(data);
+          const local = new Uint8Array(30);
+          const localView = new DataView(local.buffer);
+          localView.setUint32(0, 0x04034b50, true);
+          localView.setUint16(4, 20, true);
+          localView.setUint16(6, utf8Flag, true);
+          localView.setUint16(12, zipDate, true);
+          localView.setUint32(14, crc, true);
+          localView.setUint32(18, data.length, true);
+          localView.setUint32(22, data.length, true);
+          localView.setUint16(26, name.length, true);
+          entries.push(local, name, data);
+
+          const central = new Uint8Array(46);
+          const centralView = new DataView(central.buffer);
+          centralView.setUint32(0, 0x02014b50, true);
+          centralView.setUint16(4, 20, true);
+          centralView.setUint16(6, 20, true);
+          centralView.setUint16(8, utf8Flag, true);
+          centralView.setUint16(14, zipDate, true);
+          centralView.setUint32(16, crc, true);
+          centralView.setUint32(20, data.length, true);
+          centralView.setUint32(24, data.length, true);
+          centralView.setUint16(28, name.length, true);
+          centralView.setUint32(42, offset, true);
+          directory.push(central, name);
+          offset += local.length + name.length + data.length;
+          directorySize += central.length + name.length;
+        }
+
+        const end = new Uint8Array(22);
+        const endView = new DataView(end.buffer);
+        endView.setUint32(0, 0x06054b50, true);
+        endView.setUint16(8, files.length, true);
+        endView.setUint16(10, files.length, true);
+        endView.setUint32(12, directorySize, true);
+        endView.setUint32(16, offset, true);
+        return new Blob([...entries, ...directory, end], { type: "application/zip" });
+      }
+
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+        try {
+          const files = collectFiles(getPublicHome());
+          const downloadUrl = URL.createObjectURL(zipFiles(files));
+          const link = document.createElement("a");
+          link.href = downloadUrl;
+          link.download = "kakobuy-spreadsheet-static-site.zip";
+          document.body.append(link);
+          link.click();
+          link.remove();
+          window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 30000);
+          status.textContent = "ZIP ready. Extract the files together and open the exported index.html.";
+        } catch (error) {
+          status.textContent = error.message;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
